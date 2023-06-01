@@ -1,0 +1,20 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+    Remove Page
+{% endblock %}
+
+{% block body %}
+    <h1>Remove Page</h1>
+    <hr>
+    <form action="{% url 'remove_page' %}" method="POST">
+        {% csrf_token %}
+        <label for="title">Select a page to remove:</label>
+        <select name="title" id="title">
+            {% for entry in entries %}
+                <option value="{{ entry }}">{{ entry }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Remove</button>
+    </form>
+{% endblock %}
